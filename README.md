@@ -10,9 +10,8 @@ Görüşmelerde "böyle bir şey yapıyoruz" diye göstermek için kullanılır.
 | `01-kurumsal` | Koyu antrasit + altın vurgu, serif başlık, uzun tek sayfa | Deneme tasarımı — marka yok |
 | `02-modern` | Beyaz + mavi vurgu, tam ekran fotoğraf, ortalanmış sade dil | Deneme tasarımı — marka yok |
 | `03-vitrin` | Açık zemin + çelik gri vurgu, kayan proje vitrini, fotoğraf ağırlıklı | Deneme tasarımı — marka yok |
-| `cevirgen` | 01 ile aynı kurgu, bir firmaya uyarlanmış hâli | Firmaya özel renk ve proje adları |
 
-`index.html` dördünü listeleyen seçim sayfasıdır; görüşmede önce bunu açıp aralarında gezinebilirsiniz.
+`index.html` üçünü listeleyen seçim sayfasıdır; görüşmede önce bunu açıp aralarında gezinebilirsiniz.
 
 ## Fotoğraflar
 
@@ -35,8 +34,6 @@ Derleme gerekmez. Kökteki `index.html` dosyasını çift tıklamak yeterli.
 
 - **01, 02 ve 03 deneme tasarımıdır**; hiçbir firmanın adı, projesi ya da rakamı geçmez.
   Firma adı yerine "Firma Adı", proje adı yerine "Proje Adı 01…05" yazar.
-- `cevirgen` klasörü belirli bir firmaya uyarlanmış sürümdür; renkler firmanın logosundan,
-  proje adları kendi tanıtımlarından alınmıştır. **Yayına alınmaz, yalnızca sunum içindir.**
 - Telefon, e-posta ve adres alanları her dosyada yer tutucudur (`0000 000 00 00`, `ornek@ornek.com`).
 
 
