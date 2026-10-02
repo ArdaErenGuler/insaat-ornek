@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>İnşaat — Örnek Web Tasarımları</title>
+    <style>
+      :root {
+        --ink: #0b0f19;
+        --ink2: #141b29;
+        --line: rgb(255 255 255 / 0.12);
+        --line2: rgb(255 255 255 / 0.25);
+        --head: #f8fafc;
+        --body: #cfd8e3;
+        --muted: #8e9cad;
+        --accent: #00b4d8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: clamp(2.5rem, 7vw, 5rem) clamp(1.25rem, 5vw, 3rem);
+        background: var(--ink);
+        color: var(--body);
+        font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+        line-height: 1.7;
+      }
+      .sayfa {
+        max-width: 1100px;
+        margin-inline: auto;
+      }
+      .ustbilgi {
+        margin: 0 0 2.5rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--head);
+        line-height: 1.1;
+      }
+      .giris {
+        max-width: 60ch;
+        margin: 1.2rem 0 0;
+        color: var(--muted);
+      }
+      .izgara {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        margin-top: 3rem;
+      }
+      .kart {
+        display: flex;
+        flex-direction: column;
+        padding: 1.6rem;
+        background: var(--ink2);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.2s, translate 0.2s;
+      }
+      .kart:hover {
+        border-color: var(--line2);
+        translate: 0 -4px;
+      }
+      .onizleme {
+        aspect-ratio: 16 / 10;
+        border-radius: 8px;
+        margin-bottom: 1.2rem;
+        border: 1px solid var(--line);
+        display: grid;
+        place-items: center;
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .o1 {
+        background: linear-gradient(150deg, #0f1821, #13293b 60%, #0a4568);
+        color: #7fb6dd;
+      }
+      .o2 {
+        background: linear-gradient(150deg, #ffffff, #f0f3f6);
+        color: #6b7b8c;
+      }
+      .o3 {
+        background: linear-gradient(150deg, #f4f1ec, #2f3a42);
+        color: #d8c6ab;
+      }
+      .o4 {
+        background: linear-gradient(150deg, #0a4568, #0e5e92 60%, #15293a);
+        color: #a9d4f0;
+      }
+      .kart h2 {
+        margin: 0 0 0.4rem;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--head);
+      }
+      .kart p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .rozet {
+        display: inline-block;
+        margin-bottom: 0.9rem;
+        padding: 0.2rem 0.6rem;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        align-self: flex-start;
+      }
+      .rozet-marka {
+        border-color: rgb(0 180 216 / 0.45);
+        color: var(--accent);
+      }
+      .ac {
+        margin-top: 1.2rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--accent);
+      }
+      .not {
+        margin-top: 3.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sayfa">
+      <p class="ustbilgi">Örnek Tasarımlar</p>
+
+      <h1>İnşaat sektörü için<br />örnek web tasarımları</h1>
+      <p class="giris">
+        Aşağıdaki üç tasarım, görüşmelerde göstermek için hazırlanmış deneme çalışmalarıdır; hiçbir
+        firmaya ait değildir, içerikler yer tutucudur. Dördüncüsü belirli bir firmaya uyarlanmış
+        sürümdür.
+      </p>
+
+      <div class="izgara">
+        <a class="kart" href="01-kurumsal/index.html">
+          <div class="onizleme o1">Koyu · Kurumsal</div>
+          <span class="rozet">Tasarım 1</span>
+          <h2>Kurumsal</h2>
+          <p>Koyu zemin, serif başlıklar, uzun tek sayfa akışı. Kurumsal ve köklü duruş.</p>
+          <span class="ac">Aç →</span>
+        </a>
+
+        <a class="kart" href="02-modern/index.html">
+          <div class="onizleme o2">Açık · Sade</div>
+          <span class="rozet">Tasarım 2</span>
+          <h2>Sade</h2>
+          <p>Tam ekran görsel, ortalanmış başlıklar, bol boşluk. Sakin ve ferah bir dil.</p>
+          <span class="ac">Aç →</span>
+        </a>
+
+        <a class="kart" href="03-vitrin/index.html">
+          <div class="onizleme o3">Vitrin · Proje odaklı</div>
+          <span class="rozet">Tasarım 3</span>
+          <h2>Vitrin</h2>
+          <p>Projeleri öne çıkaran kayan vitrin, filtreli kart ızgarası, taş ve bronz tonları.</p>
+          <span class="ac">Aç →</span>
+        </a>
+
+        <a class="kart" href="cevirgen/index.html">
+          <div class="onizleme o4">Firmaya uyarlanmış</div>
+          <span class="rozet rozet-marka">Uyarlama</span>
+          <h2>Çevirgen İnşaat</h2>
+          <p>Birinci tasarımın, firmanın kendi rengi ve projeleriyle uyarlanmış hâli.</p>
+          <span class="ac">Aç →</span>
+        </a>
+      </div>
+
+      <p class="not">
+        Tasarımlar düz HTML ve CSS ile yazıldı; internet bağlantısı olmadan da açılır. Görsel
+        alanları şu an yer tutucudur, firmanın kendi fotoğrafları geldiğinde yerine konur.
+      </p>
+    </div>
+  </body>
+</html>

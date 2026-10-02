@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Firma Adı İnşaat — Projeler</title>
+    <meta
+      name="description"
+      content="Firma Adı İnşaat projeleri: Proje Adı 01, Proje Adı 02, Proje Adı 03, Proje Adı 04, Proje Adı 05."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="ust" id="ust">
+      <div class="ust-ic">
+        <a href="#ust" class="marka" aria-label="Firma Adı İnşaat ana sayfa">
+          <svg class="amblem" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 2 46 24 24 46 2 24Z" />
+            <path d="M24 15 33 24 24 33 15 24Z" class="amblem-ic" />
+          </svg>
+          <span class="marka-ad">FİRMA ADI<i>İNŞAAT</i></span>
+        </a>
+
+        <nav class="menu" aria-label="Ana menü">
+          <a href="#projeler">Projeler</a>
+          <a href="#hakkimizda">Hakkımızda</a>
+          <a href="#hizmetler">Hizmetler</a>
+          <a href="#iletisim">İletişim</a>
+        </nav>
+
+        <a href="tel:+900000000000" class="ust-telefon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span>0000 000 00 00</span>
+        </a>
+
+        <button class="menu-ac" type="button" aria-label="Menüyü aç" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Vitrin: tam ekran proje gösterimi -->
+      <section class="vitrin" aria-roledescription="carousel" aria-label="Öne çıkan projeler">
+        <div class="vitrin-zemin" id="vitrinZemin" aria-hidden="true">
+          <div class="doku"></div>
+        </div>
+
+        <div class="vitrin-ic">
+          <div class="vitrin-yazi">
+            <p class="vitrin-durum" id="vitrinDurum">Devam ediyor</p>
+            <h1 id="vitrinAd">Proje Adı 01</h1>
+            <p class="vitrin-alt" id="vitrinAlt">48 daire · 3+1 ve 4+1 bahçe dubleksleri</p>
+            <a href="#projeler" class="dugme dugme-beyaz">Projeyi incele</a>
+          </div>
+
+          <div class="vitrin-alt-serit">
+            <div class="vitrin-sayac">
+              <strong id="vitrinNo">01</strong><span>/ 05</span>
+            </div>
+
+            <div class="vitrin-noktalar" id="vitrinNoktalar" role="tablist" aria-label="Proje seç"></div>
+
+            <div class="vitrin-oklar">
+              <button type="button" id="geri" aria-label="Önceki proje">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18 9 12l6-6" /></svg>
+              </button>
+              <button type="button" id="ileri" aria-label="Sonraki proje">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sayı şeridi -->
+      <section class="serit" aria-label="Rakamlar">
+        <div class="kapsayici serit-ic">
+          <div><strong>30</strong><span>yıllık deneyim</span></div>
+          <div><strong>1.500+</strong><span>tamamlanmış konut</span></div>
+          <div><strong>5</strong><span>devam eden proje</span></div>
+          <div><strong>24</strong><span>teslim edilen site</span></div>
+        </div>
+      </section>
+
+      <!-- Tüm projeler -->
+      <section class="bolum" id="projeler">
+        <div class="kapsayici">
+          <header class="bolum-ust">
+            <div>
+              <p class="bolum-etiket">Portföy</p>
+              <h2>Tüm projeler</h2>
+            </div>
+            <div class="suzgec" role="group" aria-label="Projeleri süz">
+              <button type="button" class="suzgec-dugme etkin" data-sz="hepsi">Hepsi</button>
+              <button type="button" class="suzgec-dugme" data-sz="devam">Devam eden</button>
+              <button type="button" class="suzgec-dugme" data-sz="tamam">Tamamlanan</button>
+            </div>
+          </header>
+
+          <div class="kart-izgara" id="kartIzgara">
+            <article class="kart kart-genis" data-durum="devam">
+              <div class="kart-gorsel t1" aria-hidden="true"><span>Görsel alanı</span></div>
+              <div class="kart-yazi">
+                <p class="kart-durum devam">Devam ediyor</p>
+                <h3>Proje Adı 01</h3>
+                <p>48 daire · 2027 teslim</p>
+              </div>
+            </article>
+
+            <article class="kart" data-durum="devam">
+              <div class="kart-gorsel t2" aria-hidden="true"><span>Görsel alanı</span></div>
+              <div class="kart-yazi">
+                <p class="kart-durum devam">Devam ediyor</p>
+                <h3>Proje Adı 02</h3>
+                <p>320 daire · 2028 teslim</p>
+              </div>
+            </article>
+
+            <article class="kart" data-durum="tamam">
+              <div class="kart-gorsel t3" aria-hidden="true"><span>Görsel alanı</span></div>
+              <div class="kart-yazi">
+                <p class="kart-durum">Tamamlandı</p>
+                <h3>Proje Adı 03</h3>
+                <p>24 villa · 2023</p>
+              </div>
+            </article>
+
+            <article class="kart" data-durum="tamam">
+              <div class="kart-gorsel t4" aria-hidden="true"><span>Görsel alanı</span></div>
+              <div class="kart-yazi">
+                <p class="kart-durum">Tamamlandı</p>
+                <h3>Proje Adı 04</h3>
+                <p>96 daire · 2021</p>
+              </div>
+            </article>
+
+            <article class="kart kart-genis" data-durum="tamam">
+              <div class="kart-gorsel t5" aria-hidden="true"><span>Görsel alanı</span></div>
+              <div class="kart-yazi">
+                <p class="kart-durum">Tamamlandı</p>
+                <h3>Proje Adı 05</h3>
+                <p>18 daire · şehir merkezi · 2019</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hakkımızda -->
+      <section class="bolum bolum-koyu" id="hakkimizda">
+        <div class="kapsayici hakkinda">
+          <div class="hakkinda-sol">
+            <p class="bolum-etiket acik">Hakkımızda</p>
+            <h2>Kısaca<br />firmamız</h2>
+          </div>
+          <div class="hakkinda-sag">
+            <p class="buyuk-metin">
+              bu alanda firmanın kuruluş hikâyesi yer alır. Metin örnektir,
+              firmanın kendi anlatımıyla değiştirilir.
+            </p>
+            <p>
+              Zemini kendimiz etüt ediyor, malzemeyi kendimiz seçiyor, şantiyeyi kendi ekibimizle
+              yönetiyoruz. Teslim ettiğimiz her yapının arkasında, teslimden yıllar sonra da
+              duruyoruz.
+            </p>
+            <div class="imza">
+              <span class="imza-cizgi" aria-hidden="true"></span>
+              <p>Yönetim Kurulu</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hizmetler -->
+      <section class="bolum" id="hizmetler">
+        <div class="kapsayici">
+          <header class="bolum-ust">
+            <div>
+              <p class="bolum-etiket">Hizmetler</p>
+              <h2>Ne yapıyoruz?</h2>
+            </div>
+          </header>
+
+          <ul class="hizmet-liste">
+            <li>
+              <span class="hizmet-no">01</span>
+              <h3>Konut projeleri</h3>
+              <p>Arsa değerlendirmesinden anahtar teslime kadar konut geliştirme ve satış.</p>
+            </li>
+            <li>
+              <span class="hizmet-no">02</span>
+              <h3>Ticari yapılar</h3>
+              <p>Ofis, mağaza ve depo yapıları; işletmenin düzenine göre kurgulanmış planlar.</p>
+            </li>
+            <li>
+              <span class="hizmet-no">03</span>
+              <h3>Kentsel dönüşüm</h3>
+              <p>Riskli yapı tespitinden yeni binanın teslimine kadar sürecin tamamı.</p>
+            </li>
+            <li>
+              <span class="hizmet-no">04</span>
+              <h3>Restorasyon</h3>
+              <p>Özgün dokusu korunarak güçlendirilen tarihi ve eski yapılar.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- İletişim -->
+      <section class="iletisim" id="iletisim">
+        <div class="kapsayici iletisim-ic">
+          <div>
+            <p class="bolum-etiket acik">İletişim</p>
+            <h2>Bir sonraki proje<br />sizinki olsun</h2>
+            <p class="iletisim-metin">
+              Arsanız için değerlendirme, satıştaki projelerde daire bilgisi ya da kentsel dönüşüm
+              süreci — numaranızı bırakın, aynı gün dönelim.
+            </p>
+          </div>
+
+          <div class="iletisim-kutular">
+            <a class="kutu" href="tel:+900000000000">
+              <span class="kutu-etiket">Telefon</span>
+              <strong>0000 000 00 00</strong>
+            </a>
+            <a class="kutu" href="mailto:ornek@ornek.com">
+              <span class="kutu-etiket">E-posta</span>
+              <strong>ornek@ornek.com</strong>
+            </a>
+            <div class="kutu">
+              <span class="kutu-etiket">Ofis</span>
+              <strong>Örnek Mahallesi<br />Örnek Caddesi No: 00</strong>
+            </div>
+            <div class="kutu">
+              <span class="kutu-etiket">Çalışma saatleri</span>
+              <strong>Pazartesi – Cumartesi<br />09.00 – 18.00</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="alt">
+      <div class="kapsayici alt-ic">
+        <span class="marka-ad alt-marka">FİRMA ADI<i>İNŞAAT</i></span>
+        <p>© <span id="yil">2026</span> Firma Adı İnşaat · Örnek tasarım</p>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('yil').textContent = new Date().getFullYear();
+
+      /* ---------- Menü ---------- */
+      const acDugmesi = document.querySelector('.menu-ac');
+      const menu = document.querySelector('.menu');
+      acDugmesi.addEventListener('click', () => {
+        const acik = menu.classList.toggle('acik');
+        acDugmesi.setAttribute('aria-expanded', String(acik));
+      });
+      menu.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          menu.classList.remove('acik');
+          acDugmesi.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      const ust = document.querySelector('.ust');
+      const kontrol = () => ust.classList.toggle('kaydirildi', window.scrollY > 40);
+      kontrol();
+      addEventListener('scroll', kontrol, { passive: true });
+
+      /* ---------- Vitrin ---------- */
+      const projeler = [
+        { ad: 'Proje Adı 01', alt: '48 daire · 3+1 ve 4+1 bahçe dubleksleri', durum: 'Devam ediyor', tema: 'tema-1' },
+        { ad: 'Proje Adı 02', alt: '320 daire · yedi bloklu karma yaşam projesi', durum: 'Devam ediyor', tema: 'tema-2' },
+        { ad: 'Proje Adı 03', alt: '24 villa · müstakil konak yerleşkesi', durum: 'Tamamlandı', tema: 'tema-3' },
+        { ad: 'Proje Adı 04', alt: '96 daire · peyzaj ağırlıklı site yerleşimi', durum: 'Tamamlandı', tema: 'tema-4' },
+        { ad: 'Proje Adı 05', alt: '18 daire · şehir merkezinde butik apartman', durum: 'Tamamlandı', tema: 'tema-5' },
+      ];
+
+      const zemin = document.getElementById('vitrinZemin');
+      const adEl = document.getElementById('vitrinAd');
+      const altEl = document.getElementById('vitrinAlt');
+      const durumEl = document.getElementById('vitrinDurum');
+      const noEl = document.getElementById('vitrinNo');
+      const noktalar = document.getElementById('vitrinNoktalar');
+      let sira = 0;
+      let zamanlayici;
+
+      projeler.forEach((p, i) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.role = 'tab';
+        d.setAttribute('aria-label', p.ad);
+        d.addEventListener('click', () => {
+          goster(i);
+          baslat();
+        });
+        noktalar.append(d);
+      });
+
+      function goster(i) {
+        sira = (i + projeler.length) % projeler.length;
+        const p = projeler[sira];
+        zemin.className = 'vitrin-zemin ' + p.tema;
+        adEl.textContent = p.ad;
+        altEl.textContent = p.alt;
+        durumEl.textContent = p.durum;
+        durumEl.classList.toggle('tamamlandi', p.durum === 'Tamamlandı');
+        noEl.textContent = String(sira + 1).padStart(2, '0');
+        [...noktalar.children].forEach((d, k) => {
+          d.classList.toggle('etkin', k === sira);
+          d.setAttribute('aria-selected', String(k === sira));
+        });
+        // yazıyı her geçişte yeniden belirt
+        const yazi = document.querySelector('.vitrin-yazi');
+        yazi.classList.remove('gir');
+        void yazi.offsetWidth;
+        yazi.classList.add('gir');
+      }
+
+      const durgun = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function baslat() {
+        clearInterval(zamanlayici);
+        if (!durgun) zamanlayici = setInterval(() => goster(sira + 1), 6000);
+      }
+
+      document.getElementById('ileri').addEventListener('click', () => {
+        goster(sira + 1);
+        baslat();
+      });
+      document.getElementById('geri').addEventListener('click', () => {
+        goster(sira - 1);
+        baslat();
+      });
+
+      goster(0);
+      baslat();
+
+      /* ---------- Proje süzgeci ---------- */
+      const izgara = document.getElementById('kartIzgara');
+      document.querySelectorAll('.suzgec-dugme').forEach((dugme) => {
+        dugme.addEventListener('click', () => {
+          document.querySelectorAll('.suzgec-dugme').forEach((d) => d.classList.remove('etkin'));
+          dugme.classList.add('etkin');
+          const sz = dugme.dataset.sz;
+          izgara.querySelectorAll('.kart').forEach((k) => {
+            k.hidden = sz !== 'hepsi' && k.dataset.durum !== sz;
+          });
+        });
+      });
+
+      /* ---------- Belirme ---------- */
+      const gozlemci = new IntersectionObserver(
+        (girdiler) => girdiler.forEach((g) => g.isIntersecting && g.target.classList.add('gorundu')),
+        { rootMargin: '0px 0px -10% 0px' },
+      );
+      document.querySelectorAll('.bolum, .serit, .iletisim').forEach((el) => gozlemci.observe(el));
+    </script>
+  </body>
+</html>

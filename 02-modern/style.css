@@ -1,0 +1,697 @@
+/* ============================================================
+   Firma Adı İnşaat — "Sade / editöryel" örnek tasarım
+   Tam ekran kahraman, ortalanmış büyük harf başlıklar, bol beyaz alan,
+   yalnızca hamburger menü. Marka rengi Instagram logosundan: #0e5e92
+   Dışarıdan dosya çekilmez; internet olmadan da açılır.
+   ============================================================ */
+
+:root {
+  --mavi: #0e5e92;
+  --mavi-koyu: #0a4568;
+  --mavi-acik: #4a9bd4;
+  --siyah: #16191d;
+  --metin: #6e6e6e;
+  --metin-koyu: #333333;
+  --cizgi: #e5e5e5;
+  --gri: #f6f6f6;
+
+  --kenar: clamp(1.25rem, 5vw, 4rem);
+  --govde: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--metin);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+body.kilit {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--metin-koyu);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0.06em;
+}
+
+p {
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.kapsayici {
+  width: 100%;
+  max-width: var(--govde);
+  margin-inline: auto;
+  padding-inline: var(--kenar);
+}
+.dar {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+  padding-inline: var(--kenar);
+  text-align: center;
+}
+
+/* ---------- Düğme ---------- */
+
+.dugme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 2.6rem;
+  border: 1px solid currentColor;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  color: #fff;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+.dugme:hover {
+  background: #fff;
+  color: var(--siyah);
+}
+.dugme-dolu {
+  background: var(--mavi);
+  border-color: var(--mavi);
+  color: #fff;
+}
+.dugme-dolu:hover {
+  background: var(--mavi-koyu);
+  border-color: var(--mavi-koyu);
+  color: #fff;
+}
+
+/* ---------- Üst ---------- */
+
+.ust {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem var(--kenar);
+  background: rgb(255 255 255 / 0.96);
+  border-bottom: 1px solid var(--cizgi);
+}
+
+.marka {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+.amblem {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  fill: var(--mavi);
+}
+.amblem .amblem-ic {
+  fill: #fff;
+}
+.marka-ad {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--siyah);
+}
+.marka-ad i {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--mavi);
+}
+
+.menu-dugme {
+  display: grid;
+  gap: 7px;
+  width: 44px;
+  height: 44px;
+  place-content: center;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.menu-dugme span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--siyah);
+  transition: translate 0.25s, rotate 0.25s;
+}
+.menu-dugme.acik span:first-child {
+  translate: 0 4.5px;
+  rotate: 45deg;
+}
+.menu-dugme.acik span:last-child {
+  translate: 0 -4.5px;
+  rotate: -45deg;
+}
+
+/* Tam ekran menü. [hidden] sınıf kuralından sonra gelmeli, yoksa display:grid onu ezer. */
+.tam-menu[hidden] {
+  display: none;
+}
+.tam-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 3rem;
+  padding: 6rem var(--kenar) 3rem;
+  background: #fff;
+}
+.tam-menu nav {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: center;
+}
+.tam-menu nav a {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--siyah);
+  transition: color 0.2s;
+}
+.tam-menu nav a:hover {
+  color: var(--mavi);
+}
+.tam-menu-alt {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: center;
+  font-size: 0.95rem;
+}
+.tam-menu-alt a {
+  text-decoration: none;
+  color: var(--mavi);
+  font-weight: 600;
+}
+
+/* ---------- Kahraman ---------- */
+
+.kahraman {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 7rem var(--kenar) 5rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Fotoğraf gelene kadar duran alan */
+.kahraman-gorsel {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(10 20 30 / 0.55), rgb(10 20 30 / 0.72)),
+    linear-gradient(135deg, #0a4568 0%, #15293a 45%, #2b3f50 100%);
+}
+/* Yer tutucu notu başlığın üstüne binmesin diye köşeye alınır */
+.gorsel-not {
+  position: absolute;
+  right: 1.4rem;
+  bottom: 1.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.28);
+}
+
+.kahraman-ic {
+  position: relative;
+  max-width: 900px;
+}
+.kahraman h1 {
+  font-size: clamp(1.9rem, 6.4vw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: #fff;
+}
+.kahraman-alt {
+  margin: 1.6rem 0 2.6rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--mavi-acik);
+}
+
+.asagi {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  translate: -50% 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: rgb(255 255 255 / 0.75);
+  animation: zipla 2.4s ease-in-out infinite;
+}
+.asagi svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@keyframes zipla {
+  0%, 100% { translate: -50% 0; }
+  50% { translate: -50% 8px; }
+}
+
+/* ---------- Bölüm ---------- */
+
+.bolum {
+  padding: clamp(4.5rem, 10vw, 8rem) 0;
+  opacity: 0;
+  translate: 0 18px;
+  transition: opacity 0.8s ease-out, translate 0.8s ease-out;
+}
+.bolum.gorundu {
+  opacity: 1;
+  translate: 0;
+}
+.bolum-gri {
+  background: var(--gri);
+}
+
+.bolum h2 {
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+}
+
+.kisa-cizgi {
+  width: 56px;
+  height: 2px;
+  margin: 1.4rem auto 1.8rem;
+  background: var(--mavi);
+}
+
+.bolum-ust-orta {
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+.bolum-ust-orta p {
+  max-width: 54ch;
+  margin-inline: auto;
+}
+
+.suslu-ayrac {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2.2rem;
+}
+.suslu-ayrac span {
+  width: clamp(40px, 12vw, 110px);
+  height: 1px;
+  background: var(--cizgi);
+}
+.suslu-ayrac svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--mavi);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.giris {
+  font-size: 1.02rem;
+}
+
+/* Misyon / vizyon */
+.sekmeler {
+  margin-top: 3rem;
+}
+.sekme-dugmeler {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 1.6rem;
+}
+.sekme-dugme {
+  padding: 0.6rem 1.4rem;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--metin);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.sekme-dugme.etkin {
+  color: var(--mavi);
+  border-bottom-color: var(--mavi);
+}
+.sekme-icerik {
+  max-width: 60ch;
+  margin-inline: auto;
+}
+
+/* ---------- Sayılar ---------- */
+
+.sayilar {
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0;
+  background: var(--siyah);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+.sayilar.gorundu {
+  opacity: 1;
+}
+.sayilar-ic {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1rem;
+  text-align: center;
+}
+.sayilar strong {
+  display: block;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.sayilar span {
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  color: #9aa4ad;
+}
+@media (min-width: 760px) {
+  .sayilar-ic {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- Projeler ---------- */
+
+.proje-izgara {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+.proje {
+  display: block;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid var(--cizgi);
+  transition: border-color 0.25s, translate 0.25s;
+}
+.proje:hover {
+  border-color: var(--mavi);
+  translate: 0 -5px;
+}
+
+/* Fotoğraf yer tutucusu */
+.proje-gorsel {
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  background-image: linear-gradient(rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+.proje-gorsel span {
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.45);
+}
+.g1 { background-color: #123a57; }
+.g2 { background-color: #0e5e92; }
+.g3 { background-color: #27455c; }
+.g4 { background-color: #1a4a6b; }
+.g5 { background-color: #2f5c78; }
+.g6 { background-color: #34506a; }
+
+.proje-ic {
+  padding: 1.7rem;
+  text-align: center;
+}
+.proje-ic h3 {
+  font-size: 1.1rem;
+  letter-spacing: 0.14em;
+}
+.proje-alt {
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+}
+.rozet {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--metin);
+}
+.rozet.devam {
+  color: var(--mavi);
+}
+.rozet.yeni {
+  color: #b07d18;
+}
+.proje-link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--mavi);
+}
+
+/* ---------- Hizmetler ---------- */
+
+.hizmet-izgara {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  text-align: center;
+}
+.hizmet-ikon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1.4rem;
+  fill: none;
+  stroke: var(--mavi);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hizmet-izgara h3 {
+  margin-bottom: 0.7rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+}
+.hizmet-izgara p {
+  font-size: 0.92rem;
+}
+
+/* ---------- İletişim ---------- */
+
+.iletisim-izgara {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-bottom: 3rem;
+}
+.iletisim-kart {
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+  padding: 2.2rem 1.5rem;
+  border: 1px solid var(--cizgi);
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.25s;
+}
+a.iletisim-kart:hover {
+  border-color: var(--mavi);
+}
+.iletisim-kart svg {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 0.6rem;
+  fill: none;
+  stroke: var(--mavi);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.iletisim-kart span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--metin);
+}
+.iletisim-kart strong {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--metin-koyu);
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.form-satir {
+  display: grid;
+  gap: 1rem;
+}
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--cizgi);
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--metin-koyu);
+  background: #fff;
+}
+.form input:focus,
+.form textarea:focus {
+  outline: 2px solid var(--mavi);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.form textarea {
+  resize: vertical;
+}
+.form .dugme {
+  justify-self: center;
+  min-width: 220px;
+}
+@media (min-width: 620px) {
+  .form-satir {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Alt ---------- */
+
+.alt {
+  padding: 3rem 0;
+  background: var(--siyah);
+  color: #9aa4ad;
+  text-align: center;
+}
+.alt-ic {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: center;
+  font-size: 0.85rem;
+}
+.alt .marka-ad {
+  color: #fff;
+}
+.alt nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.alt nav a {
+  text-decoration: none;
+  color: #9aa4ad;
+}
+.alt nav a:hover {
+  color: #fff;
+}
+
+/* ---------- Yukarı çık ---------- */
+
+.yukari {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--mavi);
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.yukari.gorunur {
+  opacity: 1;
+  pointer-events: auto;
+}
+.yukari svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Hareket azaltma ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .bolum,
+  .sayilar {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+  .asagi {
+    animation: none;
+  }
+  .proje:hover {
+    translate: none;
+  }
+}
