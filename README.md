@@ -13,6 +13,22 @@ Görüşmelerde "böyle bir şey yapıyoruz" diye göstermek için kullanılır.
 
 `index.html` üçünü listeleyen seçim sayfasıdır; görüşmede önce bunu açıp aralarında gezinebilirsiniz.
 
+## Tanıtım videosu
+
+`tanitim/index.html`, 01-kurumsal tasarımını bir dizüstü ya da telefon çerçevesi içinde
+kendi kendine kaydırır. Ekran kaydı alıp videoya çevirmek içindir.
+
+1. Yerel sunucuyu çalıştırın: `npx serve -l 4180 .`
+2. `http://localhost:4180/tanitim/` adresini açın.
+3. Kadrajı (yatay 16:9 / dikey 9:16) ve hızı seçin.
+4. **Sunum kipi** düğmesine basın — kontroller gizlenir, tam ekrana geçer.
+5. `Win + Alt + R` ile kaydı başlatın, bir tur dönsün, aynı kısayolla durdurun.
+   Video `VideolarCaptures` klasörüne MP4 olarak düşer.
+
+Başka bir tasarımı göstermek için `tanitim/index.html` içindeki iframe kaynağını değiştirin
+(örn. `src="../02-modern/"`). Yol klasör biçiminde verilmeli; `index.html` yazılırsa sunucu
+yönlendirme yapıp stil dosyasının yolunu bozuyor.
+
 ## Fotoğraflar
 
 Tüm şablonlar kökteki ortak `gorseller/` klasörünü kullanır (`../gorseller/...`).

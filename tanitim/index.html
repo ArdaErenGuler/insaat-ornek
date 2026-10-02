@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tanıtım — Kurumsal Tasarım</title>
+    <style>
+      /* ============================================================
+         Tanıtım sahnesi: tasarımı bir cihaz çerçevesinin içinde
+         kendi kendine kaydırır. Ekran kaydı alınarak videoya çevrilir.
+         Kontroller kayda girmesin diye sahnenin dışında durur ve
+         "Sunum" kipinde gizlenir.
+         ============================================================ */
+      :root {
+        --ink: #14161a;
+        --ink2: #1d2026;
+        --line: rgb(255 255 255 / 0.14);
+        --head: #f6f8fa;
+        --muted: #9aa3ad;
+        --altin: #c2a06a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        background: #0c0d10;
+        color: var(--head);
+        font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        overflow: hidden;
+      }
+
+      /* ---------- Sahne: kaydedilecek alan ---------- */
+      .sahne {
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        background:
+          radial-gradient(circle at 30% 20%, rgb(194 160 106 / 0.16), transparent 55%),
+          radial-gradient(circle at 75% 80%, rgb(80 110 150 / 0.18), transparent 55%),
+          linear-gradient(160deg, #0f1115, #171a20);
+        overflow: hidden;
+      }
+
+      /* Üç satır: başlık / cihaz / alt yazı. Yazılar ekrana binmesin diye
+         mutlak konum yerine ızgara kullanılır. */
+      .kadraj {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        justify-items: center;
+        align-items: center;
+        gap: 0.9rem;
+        transition: width 0.3s, height 0.3s;
+      }
+      /* Kadraj, pencereye göre değil sahnenin kendi kutusuna göre ölçülür;
+         böylece kontrol çubuğu ne kadar yer kaplarsa kaplasın taşma olmaz.
+         Yatayda sahneyi doldurur (kayıt ekranın kendi oranını alır),
+         dikeyde 9:16 oranında daralır. */
+      body[data-oran="yatay"] .kadraj {
+        width: 100%;
+        height: 100%;
+      }
+      body[data-oran="dikey"] .kadraj {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        aspect-ratio: 9 / 16;
+      }
+
+      /* ---------- Cihaz çerçeveleri ---------- */
+      .cihaz {
+        position: relative;
+        background: #0a0b0d;
+        border: 1px solid rgb(255 255 255 / 0.18);
+        overflow: hidden;
+      }
+      /* Dizüstü: üstte ince çubuk, altında ekran.
+         Genişlik, üst ve alt yazılara yer kalacak şekilde sınırlı tutulur. */
+      body[data-oran="yatay"] .cihaz {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 12px;
+        box-shadow: 0 40px 80px rgb(0 0 0 / 0.55);
+      }
+      /* Telefon: yuvarlak köşeler, çentik */
+      body[data-oran="dikey"] .cihaz {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+        aspect-ratio: 9 / 18;
+        border-radius: 38px;
+        border-width: 8px;
+        box-shadow: 0 30px 70px rgb(0 0 0 / 0.55);
+      }
+
+      .cubuk {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        height: 28px;
+        padding: 0 0.8rem;
+        background: #16181c;
+        border-bottom: 1px solid rgb(255 255 255 / 0.1);
+      }
+      .cubuk i {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: rgb(255 255 255 / 0.22);
+      }
+      .cubuk span {
+        margin-left: 0.6rem;
+        font-size: 0.68rem;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+      }
+      body[data-oran="dikey"] .cubuk {
+        display: none;
+      }
+      body[data-oran="dikey"] .centik {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        translate: -50% 0;
+        width: 36%;
+        height: 22px;
+        background: #0a0b0d;
+        border-radius: 0 0 14px 14px;
+        z-index: 3;
+      }
+      body[data-oran="yatay"] .centik {
+        display: none;
+      }
+
+      .ekran {
+        position: relative;
+        width: 100%;
+        height: calc(100% - 28px);
+        overflow: hidden;
+        background: #14161a;
+      }
+      body[data-oran="dikey"] .ekran {
+        height: 100%;
+      }
+
+      /* Siteyi taşıyan çerçeve: tam sayfa boyunda, yukarı doğru kaydırılır */
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 0;
+        transform-origin: top left;
+        will-change: transform;
+      }
+
+      /* ---------- Başlık ve alt yazı (kayda girer) ---------- */
+      .yazi {
+        text-align: center;
+        pointer-events: none;
+        transition: opacity 0.6s;
+      }
+      .yazi-ust {
+        order: -1;
+      }
+      .yazi strong {
+        display: block;
+        font-size: clamp(0.95rem, 1.8vw, 1.4rem);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .yazi span {
+        display: block;
+        margin-top: 0.2rem;
+        font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--altin);
+      }
+      body.sunum .yazi {
+        opacity: 1;
+      }
+
+      /* ---------- Kontroller (kayda girmez) ---------- */
+      .kontrol {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.9rem 1.2rem;
+        background: var(--ink);
+        border-top: 1px solid var(--line);
+      }
+      body.sunum .kontrol {
+        display: none;
+      }
+      .kontrol b {
+        margin-right: 0.3rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      button,
+      select {
+        min-height: 38px;
+        padding: 0 0.9rem;
+        background: var(--ink2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--head);
+        font: inherit;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+      button:hover,
+      select:hover {
+        border-color: rgb(255 255 255 / 0.3);
+      }
+      button.etkin {
+        background: var(--altin);
+        border-color: var(--altin);
+        color: #14161a;
+        font-weight: 700;
+      }
+      .ipucu {
+        margin-left: auto;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      kbd {
+        padding: 0.1rem 0.4rem;
+        background: var(--ink2);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        font-size: 0.78rem;
+      }
+    </style>
+  </head>
+  <body data-oran="yatay">
+    <div class="sahne">
+      <div class="kadraj">
+        <div class="yazi yazi-ust">
+          <strong>Kurumsal İnşaat Sitesi</strong>
+          <span>Örnek Tasarım</span>
+        </div>
+        <div class="cihaz">
+          <div class="centik" aria-hidden="true"></div>
+          <div class="cubuk" aria-hidden="true">
+            <i></i><i></i><i></i>
+            <span>www.ornek-insaat.com</span>
+          </div>
+          <div class="ekran">
+            <!-- scrolling="no" verilmez: programatik kaydırmayı da engelliyor.
+                 Kaydırma çubuğu yüklenince betikle gizlenir. -->
+            <iframe id="site" src="../01-kurumsal/" title="Tasarım önizlemesi"></iframe>
+          </div>
+        </div>
+
+        <div class="yazi yazi-alt">
+          <span>Mobil uyumlu · Hızlı · Yönetim paneliyle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kontrol">
+      <b>Kadraj</b>
+      <button id="yatay" class="etkin">Yatay 16:9</button>
+      <button id="dikey">Dikey 9:16</button>
+
+      <b style="margin-left: 1rem">Hız</b>
+      <select id="hiz">
+        <option value="34">Yavaş (34 sn)</option>
+        <option value="24" selected>Normal (24 sn)</option>
+        <option value="16">Hızlı (16 sn)</option>
+      </select>
+
+      <button id="oynat" style="margin-left: 1rem">Baştan oynat</button>
+      <button id="sunum">Sunum kipi</button>
+
+      <span class="ipucu">
+        Kayıt: <kbd>Win</kbd> + <kbd>Alt</kbd> + <kbd>R</kbd> · Sunum kipinden çıkmak için <kbd>Esc</kbd>
+      </span>
+    </div>
+
+    <script>
+      const site = document.getElementById('site');
+      const ekran = document.querySelector('.ekran');
+      let sure = 24000;
+      let animasyon;
+
+      /*
+       * Siteyi cihaz ekranına oturtur: iframe cihaz kadar, içerik gerçek kaydırmayla sürülür.
+       * (Dev bir iframe'i ölçekleyip taşımak tarayıcıda çizim bozulmasına yol açıyordu.)
+       */
+      /** Çerçeve içindeki kaydırma çubuğunu gizler (kayda girmesin). */
+      function cubuguGizle(belge) {
+        if (belge.getElementById('tanitim-stil')) return;
+        const stil = belge.createElement('style');
+        stil.id = 'tanitim-stil';
+        stil.textContent =
+          'html{scrollbar-width:none!important}html::-webkit-scrollbar{display:none!important}';
+        belge.head.append(stil);
+      }
+
+      function olcekle() {
+        const belge = site.contentDocument;
+        if (!belge || !ekran.clientWidth) return 0;
+        cubuguGizle(belge);
+
+        // Masaüstü kadrajda geniş, telefon kadrajında dar görünüm
+        const dikey = document.body.dataset.oran === 'dikey';
+        const genislik = dikey ? 420 : 1440;
+        const oran = ekran.clientWidth / genislik;
+
+        site.style.width = genislik + 'px';
+        site.style.height = Math.round(ekran.clientHeight / oran) + 'px';
+        site.style.transform = 'scale(' + oran + ')';
+
+        const boy = Math.max(belge.body.scrollHeight, belge.documentElement.scrollHeight);
+        return Math.max(0, boy - site.clientHeight);
+      }
+
+      function oynat() {
+        cancelAnimationFrame(animasyon);
+        const mesafe = olcekle();
+        const pencere = site.contentWindow;
+        if (!mesafe || !pencere) return;
+
+        pencere.scrollTo(0, 0);
+        const bekle = 1200; // başta bir an duraklasın
+        const basla = performance.now();
+
+        function adim(simdi) {
+          const gecen = simdi - basla - bekle;
+          const ilerleme = gecen <= 0 ? 0 : Math.min(1, gecen / sure);
+          // Başta ve sonda yumuşasın
+          const yumusak =
+            ilerleme < 0.5 ? 2 * ilerleme * ilerleme : 1 - Math.pow(-2 * ilerleme + 2, 2) / 2;
+          pencere.scrollTo(0, mesafe * yumusak);
+
+          if (ilerleme < 1) {
+            animasyon = requestAnimationFrame(adim);
+          } else {
+            setTimeout(oynat, 1600); // döngü
+          }
+        }
+        animasyon = requestAnimationFrame(adim);
+      }
+
+      site.addEventListener('load', () => setTimeout(oynat, 400));
+      addEventListener('resize', () => oynat());
+
+      document.getElementById('yatay').addEventListener('click', (e) => {
+        document.body.dataset.oran = 'yatay';
+        document.querySelectorAll('.kontrol button').forEach((b) => b.classList.remove('etkin'));
+        e.target.classList.add('etkin');
+        setTimeout(oynat, 350);
+      });
+      document.getElementById('dikey').addEventListener('click', (e) => {
+        document.body.dataset.oran = 'dikey';
+        document.querySelectorAll('.kontrol button').forEach((b) => b.classList.remove('etkin'));
+        e.target.classList.add('etkin');
+        setTimeout(oynat, 350);
+      });
+      document.getElementById('hiz').addEventListener('change', (e) => {
+        sure = Number(e.target.value) * 1000;
+        oynat();
+      });
+      document.getElementById('oynat').addEventListener('click', () => oynat());
+      document.getElementById('sunum').addEventListener('click', () => {
+        document.body.classList.add('sunum');
+        document.documentElement.requestFullscreen?.();
+        setTimeout(oynat, 400);
+      });
+      addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.body.classList.remove('sunum');
+          setTimeout(oynat, 300);
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) document.body.classList.remove('sunum');
+        setTimeout(oynat, 300);
+      });
+    </script>
+  </body>
+</html>
