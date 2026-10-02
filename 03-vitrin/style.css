@@ -6,15 +6,15 @@
    ============================================================ */
 
 :root {
-  --bronz: #a8865f;
-  --bronz-koyu: #8c6c47;
+  --celik: #3f5a6b;
+  --celik-koyu: #2c4150;
   --kurum: #16171e;
   --kurum-2: #22242e;
   --metin: #626974;
   --metin-koyu: #2e333b;
-  --tas: #f4f1ec;
-  --tas-2: #e9e4db;
-  --cizgi: #ddd6ca;
+  --tas: #f2f4f6;
+  --tas-2: #e3e8ec;
+  --cizgi: #d4dbe1;
   --cizgi-koyu: rgb(255 255 255 / 0.14);
 
   --kenar: clamp(1.25rem, 5vw, 4rem);
@@ -128,7 +128,7 @@ svg {
   width: 34px;
   height: 34px;
   flex: none;
-  fill: var(--bronz);
+  fill: var(--celik);
 }
 .amblem .amblem-ic {
   fill: var(--kurum);
@@ -146,7 +146,7 @@ svg {
   font-size: 0.6rem;
   font-weight: 400;
   letter-spacing: 0.44em;
-  color: var(--bronz);
+  color: var(--celik);
 }
 
 .menu {
@@ -164,7 +164,7 @@ svg {
   transition: color 0.2s;
 }
 .menu a:hover {
-  color: var(--bronz);
+  color: var(--celik);
 }
 
 .ust-telefon {
@@ -180,7 +180,7 @@ svg {
   width: 16px;
   height: 16px;
   fill: none;
-  stroke: var(--bronz);
+  stroke: var(--celik);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -262,15 +262,15 @@ svg {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgb(10 11 15 / 0.55) 0%, rgb(10 11 15 / 0.35) 45%, rgb(10 11 15 / 0.85) 100%);
+  background: linear-gradient(180deg, rgb(10 11 15 / 0.78) 0%, rgb(10 11 15 / 0.52) 42%, rgb(10 11 15 / 0.9) 100%);
 }
 
 /* Her proje için farklı zemin tonu (fotoğrafın yerini tutar) */
-.tema-1 { background-color: #2f3a42; }
-.tema-2 { background-color: #3c4048; }
-.tema-3 { background-color: #4a443c; }
-.tema-4 { background-color: #35403c; }
-.tema-5 { background-color: #403a3a; }
+.tema-1 { background-image: url("../gorseller/hero-1.jpg"); background-size: cover; background-position: center; background-color: #2f3a42; }
+.tema-2 { background-image: url("../gorseller/hero-2.jpg"); background-size: cover; background-position: center; background-color: #3c4048; }
+.tema-3 { background-image: url("../gorseller/hero-3.jpg"); background-size: cover; background-position: center; background-color: #4a443c; }
+.tema-4 { background-image: url("../gorseller/hero-1.jpg"); background-size: cover; background-position: center; background-color: #35403c; }
+.tema-5 { background-image: url("../gorseller/hero-2.jpg"); background-size: cover; background-position: center; background-color: #403a3a; }
 
 .vitrin-ic {
   position: relative;
@@ -304,12 +304,12 @@ svg {
   display: inline-block;
   margin-bottom: 1.3rem;
   padding: 0.35rem 1rem;
-  border: 1px solid var(--bronz);
+  border: 1px solid var(--celik);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--bronz);
+  color: var(--celik);
 }
 .vitrin-durum.tamamlandi {
   border-color: rgb(255 255 255 / 0.4);
@@ -371,7 +371,7 @@ svg {
   transition: background-color 0.25s;
 }
 .vitrin-noktalar button.etkin {
-  background: var(--bronz);
+  background: var(--celik);
 }
 
 .vitrin-oklar {
@@ -391,8 +391,8 @@ svg {
   transition: background-color 0.2s, border-color 0.2s;
 }
 .vitrin-oklar button:hover {
-  background: var(--bronz);
-  border-color: var(--bronz);
+  background: var(--celik);
+  border-color: var(--celik);
 }
 .vitrin-oklar svg {
   width: 20px;
@@ -436,7 +436,7 @@ svg {
   display: block;
   font-size: clamp(1.9rem, 4.5vw, 2.7rem);
   font-weight: 600;
-  color: var(--bronz);
+  color: var(--celik);
 }
 .serit span {
   font-size: 0.72rem;
@@ -464,12 +464,12 @@ svg {
   translate: 0;
 }
 .bolum-koyu {
-  background: var(--kurum);
-  color: #a9b0ba;
+  background: var(--tas-2);
+  color: var(--metin);
 }
 .bolum-koyu h2,
 .bolum-koyu h3 {
-  color: #fff;
+  color: var(--metin-koyu);
 }
 
 .bolum-etiket {
@@ -478,10 +478,10 @@ svg {
   font-weight: 700;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--bronz);
+  color: var(--celik);
 }
 .bolum-etiket.acik {
-  color: var(--bronz);
+  color: var(--celik);
 }
 
 .bolum h2 {
@@ -517,8 +517,8 @@ svg {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 .suzgec-dugme:hover {
-  border-color: var(--bronz);
-  color: var(--bronz);
+  border-color: var(--celik);
+  color: var(--celik);
 }
 .suzgec-dugme.etkin {
   background: var(--kurum);
@@ -572,11 +572,11 @@ svg {
   text-transform: uppercase;
   color: rgb(255 255 255 / 0.4);
 }
-.t1 { background-color: #2f3a42; }
-.t2 { background-color: #3c4048; }
-.t3 { background-color: #4a443c; }
-.t4 { background-color: #35403c; }
-.t5 { background-color: #403a3a; }
+.t1 { background-image: url("../gorseller/proje-1.jpg"); background-size: cover; background-position: center; background-color: #2f3a42; }
+.t2 { background-image: url("../gorseller/proje-2.jpg"); background-size: cover; background-position: center; background-color: #3c4048; }
+.t3 { background-image: url("../gorseller/proje-3.jpg"); background-size: cover; background-position: center; background-color: #4a443c; }
+.t4 { background-image: url("../gorseller/proje-4.jpg"); background-size: cover; background-position: center; background-color: #35403c; }
+.t5 { background-image: url("../gorseller/proje-5.jpg"); background-size: cover; background-position: center; background-color: #403a3a; }
 
 .kart-yazi {
   position: absolute;
@@ -605,7 +605,7 @@ svg {
   color: rgb(255 255 255 / 0.6) !important;
 }
 .kart-durum.devam {
-  color: var(--bronz) !important;
+  color: var(--celik) !important;
 }
 
 /* ---------- Hakkımızda ---------- */
@@ -617,7 +617,7 @@ svg {
 .buyuk-metin {
   font-size: clamp(1.15rem, 2.4vw, 1.45rem);
   line-height: 1.6;
-  color: #fff;
+  color: var(--metin-koyu);
   margin-bottom: 1.2rem;
 }
 .imza {
@@ -629,14 +629,14 @@ svg {
 .imza-cizgi {
   width: 48px;
   height: 1px;
-  background: var(--bronz);
+  background: var(--celik);
 }
 .imza p {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--bronz);
+  color: var(--celik);
 }
 
 @media (min-width: 900px) {
@@ -670,7 +670,7 @@ svg {
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--bronz);
+  color: var(--celik);
 }
 .hizmet-liste h3 {
   font-size: 1.4rem;
@@ -729,14 +729,14 @@ svg {
   transition: border-color 0.25s;
 }
 a.kutu:hover {
-  border-color: var(--bronz);
+  border-color: var(--celik);
 }
 .kutu-etiket {
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--bronz);
+  color: var(--celik);
 }
 .kutu strong {
   font-size: 0.98rem;
